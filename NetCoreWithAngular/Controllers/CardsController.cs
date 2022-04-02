@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using NetCoreWithAngular.DataContracts;
+using NetCoreWithAngular.Services;
 
 namespace NetCoreWithAngular.Controllers
 {
@@ -9,16 +10,19 @@ namespace NetCoreWithAngular.Controllers
     {
 
         private readonly ILogger<CardsController> _logger;
+        private readonly ICardsService _cardsService;
 
-        public CardsController(ILogger<CardsController> logger)
+        public CardsController(ILogger<CardsController> logger,
+            ICardsService cardsService)
         {
             _logger = logger;
+            _cardsService = cardsService;
         }
 
         [HttpGet]
         public IEnumerable<Card> GetAllCards()
         {
-            return Enumerable.Empty<Card>();
+            return _cardsService.GetAll();
         }
     }
 }
