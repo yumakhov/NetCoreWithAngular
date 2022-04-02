@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { CardsComponent } from './cards/cards.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { CardsComponent } from './cards/cards.component';
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: CardsComponent, pathMatch: 'full' }
-    ])
+    ]),
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
