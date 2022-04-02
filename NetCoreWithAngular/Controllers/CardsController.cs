@@ -4,8 +4,7 @@ using NetCoreWithAngular.Services;
 
 namespace NetCoreWithAngular.Controllers
 {
-    [ApiController]
-    [Route("[controller]")]
+    [ApiController]    
     public class CardsController : ControllerBase
     {
 
@@ -20,6 +19,7 @@ namespace NetCoreWithAngular.Controllers
         }
 
         [HttpGet]
+        [Route("cards")]
         public IEnumerable<Card> GetAllCards()
         {
             return _cardsService.GetAll();

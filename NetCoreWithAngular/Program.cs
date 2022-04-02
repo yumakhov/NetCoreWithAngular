@@ -5,7 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllersWithViews();
-builder.Services.AddTransient<ICardsService>();
+builder.Services.AddTransient<ICardsService, CardsService>();
 
 var app = builder.Build();
 
