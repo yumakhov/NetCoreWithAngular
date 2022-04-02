@@ -49,6 +49,11 @@ namespace NetCoreWithAngular.Services
                 throw new ArgumentNullException(nameof(cardData));
             }
 
+            if (cardData.Id == Guid.Empty)
+            {
+                throw new ArgumentException("Id is empty");
+            }
+
             var existingCard = Get(cardData.Id);
             if (existingCard == null)
             {
