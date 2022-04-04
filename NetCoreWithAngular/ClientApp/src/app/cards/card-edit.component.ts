@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import Card from './models/card.model';
 import CardsService from './services/cards-service';
 
@@ -7,12 +9,29 @@ import CardsService from './services/cards-service';
   templateUrl: './card-edit.component.html'
 })
 export class CardEditComponent {
-  public card: any;
-  private cardsService: CardsService;
+  private routeSub: Subscription;
+  public card: Card = {
+    id: '',
+    name: '',
+    itemsCount: 0
+  };
+  
+  constructor(private cardsService: CardsService, private router: Router, private activeRoute: ActivatedRoute) {    
+  }
 
-  constructor(cardsService: CardsService) {
-    this.cardsService = cardsService;
-    this.card = { };
+  ngOnInit() {
+    this.routeSub = this.activeRoute.params.subscribe(params => {
+      let cardId = params['id'];
+      this.cardsService.get(cardId).subscribe(result => {
+        this.card = result;
+      }, error => console.error(error));
+      
+    }, error => console.error(error)
+    );
+  }
+
+  ngOnDestroy() {
+    this.routeSub.unsubscribe();
   }
 
   public save() {
@@ -20,6 +39,6 @@ export class CardEditComponent {
         this.card = result;
       }, error => console.error(error));
 
-    //TODO: add redirection to list
+    this.router.navigate(['']);
   }
 }

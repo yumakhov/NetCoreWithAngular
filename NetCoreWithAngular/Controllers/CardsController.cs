@@ -25,6 +25,13 @@ namespace NetCoreWithAngular.Controllers
             return _cardsService.GetAll();
         }
 
+        [HttpGet]
+        [Route("cards/{id}")]
+        public Card? GetCard(Guid id)
+        {
+            return _cardsService.Get(id);
+        }
+
         [HttpPost]
         [Route("cards")]
         public Card CreateCard([FromBody] Card cardData)

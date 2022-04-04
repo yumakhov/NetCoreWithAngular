@@ -15,6 +15,10 @@ export default class CardsService {
         return this.http.get<Card[]>(this.baseUrl + 'cards');
     }
 
+    public get(id: string) {
+        return this.http.get<Card>(this.baseUrl + `cards/${id}`);
+    }
+
     public updateCard(cardData: Card) {
         return this.http.put<Card>(this.baseUrl + 'cards', cardData);
     }
