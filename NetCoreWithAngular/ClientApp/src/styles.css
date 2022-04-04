@@ -12,7 +12,13 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
   height: 100%;
+}
+
+.container button {
+  background-color: green;
+  color: #fff;
 }
 
 .cards-container {

@@ -7,6 +7,8 @@ import { AppComponent } from './app.component';
 import { CardsComponent } from './cards/cards.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import CardsService from './cards/services/cards-service';
 
 @NgModule({
   declarations: [
@@ -21,9 +23,12 @@ import { MatCardModule } from '@angular/material/card';
       { path: '', component: CardsComponent, pathMatch: 'full' }
     ]),
     BrowserAnimationsModule,
-    MatCardModule
+    MatCardModule,
+    MatButtonModule
   ],
-  providers: [],
+  providers: [
+    CardsService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

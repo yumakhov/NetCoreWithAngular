@@ -1,6 +1,6 @@
-import { Component, Inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Component } from '@angular/core';
 import Card from './models/card.model';
+import CardsService from './services/cards-service';
 
 @Component({
   selector: 'app-cards',
@@ -9,8 +9,8 @@ import Card from './models/card.model';
 export class CardsComponent {
   public cards: Card[] = [];
 
-  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-    http.get<Card[]>(baseUrl + 'cards').subscribe(result => {
+  constructor(cardsService: CardsService) {
+    cardsService.getAllCards().subscribe(result => {
       this.cards = result;
     }, error => console.error(error));
   }
