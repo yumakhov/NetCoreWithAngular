@@ -3,10 +3,10 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-
 import { AppComponent } from './app.component';
 import { CardsComponent } from './cards/cards.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -20,7 +20,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     RouterModule.forRoot([
       { path: '', component: CardsComponent, pathMatch: 'full' }
     ]),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

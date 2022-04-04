@@ -1,22 +1,5 @@
-<h1 id="tableLabel">Cards</h1>
-
-<p>This component demonstrates fetching data from the server.</p>
-
-<p *ngIf="!cards"><em>Loading...</em></p>
-
-<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="cards">
-  <thead>
-    <tr>
-      <th>Id</th>
-      <th>Name</th>
-      <th>Items count</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let card of cards">
-      <td>{{ card.id }}</td>
-      <td>{{ card.name }}</td>
-      <td>{{ card.itemsCount }}</td>
-    </tr>
-  </tbody>
-</table>
+<div class="cards-container" *ngIf="cards" >
+  <mat-card class="mat-card" *ngFor="let card of cards">
+    <mat-card-title>{{card.name}}</mat-card-title>
+  </mat-card>
+</div>

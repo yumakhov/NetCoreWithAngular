@@ -1,19 +1,30 @@
-/* You can add global styles to this file, and also import other style files */
-
-/* Provide sufficient contrast against white background */
-a {
-  color: #0366d6;
+html, body { 
+  height: 100%; 
+  width: 100%;
 }
 
-code {
-  color: #e01a76;
+body { 
+  margin: 0; 
+  font-family: Roboto, "Helvetica Neue", sans-serif; 
 }
 
-.btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.cards-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 600px;
+}
+
+.cards-container .mat-card {
+  width: 150px;
+  text-align: center;
+  margin-left: 20px;
+  margin-top: 20px;
+}
