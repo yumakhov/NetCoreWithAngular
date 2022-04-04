@@ -9,6 +9,7 @@ import CardsService from './services/cards-service';
   templateUrl: './card-edit.component.html'
 })
 export class CardEditComponent {
+  private isNewCard: boolean = false;
   private routeSub: Subscription;
   public card: Card = {
     id: '',
@@ -22,6 +23,11 @@ export class CardEditComponent {
   ngOnInit() {
     this.routeSub = this.activeRoute.params.subscribe(params => {
       let cardId = params['id'];
+      if (!cardId) {
+        this.isNewCard = true;
+        return;
+      }
+
       this.cardsService.get(cardId).subscribe(result => {
         this.card = result;
       }, error => console.error(error));
@@ -35,9 +41,17 @@ export class CardEditComponent {
   }
 
   public save() {
-    this.cardsService.updateCard(this.card).subscribe(result => {
+    if (this.isNewCard) {
+      this.cardsService.createCard(this.card).subscribe(result => {
         this.card = result;
       }, error => console.error(error));
+    } else {
+      this.cardsService.updateCard(this.card).subscribe(result => {
+        this.card = result;
+      }, error => console.error(error));
+    }
+
+    
 
     this.router.navigate(['']);
   }

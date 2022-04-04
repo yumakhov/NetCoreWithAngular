@@ -1,4 +1,4 @@
-<button mat-raised-button>Create new card</button>
+<button mat-raised-button (click)="create()">Create new card</button>
 <div class="cards-container" *ngIf="cards" >  
   <mat-card class="mat-card" *ngFor="let card of cards" (click)="edit(card)">
     <mat-card-title>{{card.name}}</mat-card-title>

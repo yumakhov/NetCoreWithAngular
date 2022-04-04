@@ -19,7 +19,7 @@ namespace NetCoreWithAngular.Services
             }.ToDictionary(card => card.Id);
         }
 
-        public Card Create(Card cardData)
+        public Card Create(CardData cardData)
         {
             if (cardData == null)
             {

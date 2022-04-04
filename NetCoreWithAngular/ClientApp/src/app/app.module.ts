@@ -23,7 +23,8 @@ import { CardEditComponent } from './cards/card-edit.component';
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: CardsComponent, pathMatch: 'full' },
-      { path: 'edit/:id', component: CardEditComponent }
+      { path: 'card', component: CardEditComponent },
+      { path: 'card/:id', component: CardEditComponent }
     ]),
     BrowserAnimationsModule,
     MatCardModule,

@@ -34,7 +34,7 @@ namespace NetCoreWithAngular.Controllers
 
         [HttpPost]
         [Route("cards")]
-        public Card CreateCard([FromBody] Card cardData)
+        public Card CreateCard([FromBody] CardData cardData)
         {
             return _cardsService.Create(cardData);
         }

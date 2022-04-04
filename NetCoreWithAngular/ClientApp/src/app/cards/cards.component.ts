@@ -19,6 +19,10 @@ export class CardsComponent {
   }
 
   public edit(card: Card) {
-    this.router.navigate(['/edit', card.id ]);
+    this.router.navigate(['/card', card.id ]);
+  }
+
+  public create() {
+    this.router.navigate(['/card']);
   }
 }
