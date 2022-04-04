@@ -34,3 +34,9 @@ body {
   margin-left: 20px;
   margin-top: 20px;
 }
+
+.cards-container .form-item {
+  width: 100%;
+  text-align: center;
+  margin-top: 20px;
+}

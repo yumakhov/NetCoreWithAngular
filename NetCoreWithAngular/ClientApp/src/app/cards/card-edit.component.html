@@ -1,3 +1,5 @@
-<input type="text" [(ngModel)]="card.name" />
-<input type="number" [(ngModel)]="card.itemsCount" />
-<button mat-raised-button (click)="save">Save</button>
+<div class="cards-container">
+    <input class="form-item" type="text" [(ngModel)]="card.name" placeholder="Name"/>
+    <input class="form-item" type="number" [(ngModel)]="card.itemsCount" placeholder="Items count"/>
+    <button class="form-item" mat-raised-button (click)="save">Save</button>
+</div>
