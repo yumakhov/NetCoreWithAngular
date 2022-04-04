@@ -7,12 +7,12 @@ import CardsService from './services/cards-service';
   templateUrl: './card-edit.component.html'
 })
 export class CardEditComponent {
-  public card: Card;
+  public card: any;
   private cardsService: CardsService;
 
-  constructor(cardData: Card, cardsService: CardsService) {
-    this.card = cardData;
+  constructor(cardsService: CardsService) {
     this.cardsService = cardsService;
+    this.card = { };
   }
 
   public save() {

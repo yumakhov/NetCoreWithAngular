@@ -9,18 +9,21 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import CardsService from './cards/services/cards-service';
+import { CardEditComponent } from './cards/card-edit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CardsComponent
+    CardsComponent,
+    CardEditComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
-      { path: '', component: CardsComponent, pathMatch: 'full' }
+      { path: '', component: CardsComponent, pathMatch: 'full' },
+      { path: 'edit', component: CardEditComponent }
     ]),
     BrowserAnimationsModule,
     MatCardModule,
