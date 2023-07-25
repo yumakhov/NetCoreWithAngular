@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using NetCoreWithAngular.DataContracts;
-using NetCoreWithAngular.Services;
+using NetCoreWithAngular.BusinessLogic.Models;
+using NetCoreWithAngular.Logic.Abstract;
+using NetCoreWithAngular.Models;
 
 namespace NetCoreWithAngular.Controllers
 {
@@ -11,7 +12,8 @@ namespace NetCoreWithAngular.Controllers
         private readonly ILogger<CardsController> _logger;
         private readonly ICardsService _cardsService;
 
-        public CardsController(ILogger<CardsController> logger,
+        public CardsController(
+            ILogger<CardsController> logger,
             ICardsService cardsService)
         {
             _logger = logger;
@@ -20,30 +22,38 @@ namespace NetCoreWithAngular.Controllers
 
         [HttpGet]
         [Route("cards")]
-        public IEnumerable<Card> GetAllCards()
+        public IEnumerable<CardVM> GetAllCards()
         {
-            return _cardsService.GetAll();
+            var cards = _cardsService.GetAll();
+
+            return new List<CardVM>();
         }
 
         [HttpGet]
         [Route("cards/{id}")]
-        public Card? GetCard(Guid id)
+        public CardVM? GetCard(Guid id)
         {
-            return _cardsService.Get(id);
+            var card = _cardsService.Get(id);
+
+            return null;
         }
 
         [HttpPost]
         [Route("cards")]
-        public Card CreateCard([FromBody] CardData cardData)
+        public CardVM CreateCard([FromBody] CardDataVM cardData)
         {
-            return _cardsService.Create(cardData);
+            var createdCard = _cardsService.Create(new Card());
+
+            return null;
         }
 
         [HttpPut]
         [Route("cards")]
-        public Card UpdateCard([FromBody] Card cardData)
+        public CardVM UpdateCard([FromBody] CardVM cardData)
         {
-            return _cardsService.Update(cardData);
+            var updatedCard = _cardsService.Update(new Card());
+
+            return null;
         }
     }
 }

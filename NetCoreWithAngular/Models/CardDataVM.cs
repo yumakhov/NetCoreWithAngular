@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
-namespace NetCoreWithAngular.DataContracts
+namespace NetCoreWithAngular.Models
 {
-    public class CardData
+    public class CardDataVM
     {
         [Required]
         [StringLength(200, ErrorMessage = "The {0} value cannot exceed {1} characters. ")]

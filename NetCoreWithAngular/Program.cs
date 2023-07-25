@@ -1,3 +1,6 @@
+using NetCoreWithAngular.DAL.Abstract;
+using NetCoreWithAngular.DAL.Repositories;
+using NetCoreWithAngular.Logic.Abstract;
 using NetCoreWithAngular.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -5,7 +8,11 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllersWithViews();
-builder.Services.AddTransient<ICardsService, CardsService>();
+
+// Register application services
+
+builder.Services.AddScoped<ICardsRepository, CardsRepository>();
+builder.Services.AddScoped<ICardsService, CardsService>();
 
 var app = builder.Build();
 

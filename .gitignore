@@ -6,3 +6,5 @@
 /NetCoreWithAngular/ClientApp/.angular/cache/babel-webpack
 .vs/NetCoreWithAngular/DesignTimeBuild/.dtbcache.v2
 /NetCoreWithAngular/ClientApp/.angular/cache/angular-webpack/1ad38cfab123cb6e531302891f92a1fe1880fb16
+/NetCoreWithAngular.DAL/obj
+/NetCoreWithAngular.Logic/obj
