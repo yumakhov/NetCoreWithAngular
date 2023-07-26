@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Mapster;
+using Microsoft.AspNetCore.Mvc;
 using NetCoreWithAngular.BusinessLogic.Models;
 using NetCoreWithAngular.Logic.Abstract;
 using NetCoreWithAngular.Models;
@@ -22,11 +23,11 @@ namespace NetCoreWithAngular.Controllers
 
         [HttpGet]
         [Route("cards")]
-        public IEnumerable<CardVM> GetAllCards()
+        public IEnumerable<CardVM?> GetAllCards()
         {
             var cards = _cardsService.GetAll();
 
-            return new List<CardVM>();
+            return cards.Select(card => card?.Adapt<CardVM>());
         }
 
         [HttpGet]
@@ -35,25 +36,27 @@ namespace NetCoreWithAngular.Controllers
         {
             var card = _cardsService.Get(id);
 
-            return null;
+            return card?.Adapt<CardVM>();
         }
 
         [HttpPost]
         [Route("cards")]
-        public CardVM CreateCard([FromBody] CardDataVM cardData)
+        public CardVM? CreateCard([FromBody] CardDataVM cardData)
         {
-            var createdCard = _cardsService.Create(new Card());
+            var createCardRequest = cardData.Adapt<Card>();
+            var createdCard = _cardsService.Create(createCardRequest);
 
-            return null;
+            return createdCard?.Adapt<CardVM>();
         }
 
         [HttpPut]
         [Route("cards")]
-        public CardVM UpdateCard([FromBody] CardVM cardData)
+        public CardVM? UpdateCard([FromBody] CardVM cardData)
         {
-            var updatedCard = _cardsService.Update(new Card());
+            var updateCardRequest = cardData.Adapt<Card>();
+            var updatedCard = _cardsService.Update(updateCardRequest);
 
-            return null;
+            return updatedCard?.Adapt<CardVM>();
         }
     }
 }

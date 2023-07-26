@@ -9,6 +9,6 @@ namespace NetCoreWithAngular.Logic.Abstract
         Card Create(Card cardData);
         Card Update(Card cardData);
         Card? Get(Guid id);
-        List<Card> GetAll();
+        List<Card?> GetAll();
     }
 }

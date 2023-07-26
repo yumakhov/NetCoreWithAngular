@@ -1,9 +1,11 @@
-﻿using NetCoreWithAngular.BusinessLogic.Models;
+﻿using Mapster;
+using NetCoreWithAngular.BusinessLogic.Models;
 using NetCoreWithAngular.DAL.Abstract;
 using NetCoreWithAngular.DAL.Entities;
 using NetCoreWithAngular.Logic.Abstract;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace NetCoreWithAngular.Services
 {
@@ -18,30 +20,34 @@ namespace NetCoreWithAngular.Services
 
         public Card Create(Card card)
         {
-            var createdCardDbo = _cardsRepository.Create(new CardDbo());
+            var cardDbo = card.Adapt<CardDbo>();
+            var createdCardDbo = _cardsRepository.Create(cardDbo);
 
-            return new Card();
+            return createdCardDbo.Adapt<Card>();
         }
 
-        public Card Update(Card cardData)
+        public Card Update(Card card)
         {
-            var updatedCardDbo = _cardsRepository.Update(new CardDbo());
+            var cardDbo = card.Adapt<CardDbo>();
+            var updatedCardDbo = _cardsRepository.Update(cardDbo);
 
-            return new Card();
+            return updatedCardDbo.Adapt<Card>();
         }
 
         public Card? Get(Guid id)
         {
             var cardDbo = _cardsRepository.Get(id);
 
-            return new Card();
+            return cardDbo?.Adapt<Card>();
         }
 
-        public List<Card> GetAll()
+        public List<Card?> GetAll()
         {
             var cardDboItems = _cardsRepository.GetAll();
 
-            return new List<Card>();
+            return cardDboItems
+                .Select(cardDbo => cardDbo?.Adapt<Card>())
+                .ToList();
         }
     }
 }

@@ -1,7 +1,9 @@
-﻿namespace NetCoreWithAngular.BusinessLogic.Models
+﻿using System;
+
+namespace NetCoreWithAngular.BusinessLogic.Models
 {
     public class ModelBase
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
     }
 }
