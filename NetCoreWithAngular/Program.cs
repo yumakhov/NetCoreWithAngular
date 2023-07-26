@@ -1,11 +1,8 @@
 using Mapster;
 using MapsterMapper;
-using NetCoreWithAngular.BusinessLogic.Models;
 using NetCoreWithAngular.DAL.Abstract;
-using NetCoreWithAngular.DAL.Entities;
 using NetCoreWithAngular.DAL.Repositories;
 using NetCoreWithAngular.Logic.Abstract;
-using NetCoreWithAngular.Models;
 using NetCoreWithAngular.Services;
 
 var builder = WebApplication.CreateBuilder(args);
