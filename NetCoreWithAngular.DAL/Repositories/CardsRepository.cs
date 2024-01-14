@@ -1,18 +1,20 @@
 ﻿using NetCoreWithAngular.DAL.Abstract;
 using NetCoreWithAngular.DAL.Entities;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace NetCoreWithAngular.DAL.Repositories
 {
     public class CardsRepository : ICardsRepository
     {
-        public static readonly Dictionary<Guid, CardDbo> CardsDictionary = CreateDefaultCards();
+        public static readonly ConcurrentDictionary<Guid, CardDbo> CardsDictionary = CreateDefaultCards();
 
-        private static Dictionary<Guid, CardDbo> CreateDefaultCards()
+        private static ConcurrentDictionary<Guid, CardDbo> CreateDefaultCards()
         {
-            return new[]
+            var dict = new[]
             {
                 CreateNewCard("films", 2),
                 CreateNewCard("people", 4556),
@@ -21,6 +23,8 @@ namespace NetCoreWithAngular.DAL.Repositories
                 CreateNewCard("starships", 200),
                 CreateNewCard("vehicles", 15)
             }.ToDictionary(card => card.Id);
+
+            return new ConcurrentDictionary<Guid, CardDbo>(dict);
         }
 
         private static CardDbo CreateNewCard(string name, int itemsCount)
@@ -33,51 +37,57 @@ namespace NetCoreWithAngular.DAL.Repositories
             };
         }
 
-        public CardDbo Create(CardDbo card)
+        public async Task<CardDbo> CreateAsync(CardDbo card)
         {
-            if (card == null)
-            {
-                throw new ArgumentNullException(nameof(card));
-            }
+            return await Task.Run(() =>
+                {
+                    if (card == null)
+                    {
+                        throw new ArgumentNullException(nameof(card));
+                    }
 
-            var newCard = CreateNewCard(card.Name, card.ItemsCount);
-            CardsDictionary.Add(newCard.Id, newCard);
+                    var newCard = CreateNewCard(card.Name, card.ItemsCount);
+                    CardsDictionary.TryAdd(newCard.Id, newCard);
 
-            return newCard;
+                    return newCard;
+                });            
         }
 
-        public CardDbo? Get(Guid id)
+        public async Task<CardDbo?> GetAsync(Guid id)
         {
-            return CardsDictionary.TryGetValue(id, out var card) ? card : null;
+            return await Task.Run(() => CardsDictionary.TryGetValue(id, out var card) ? card : null);
         }
 
-        public List<CardDbo> GetAll()
+        public async Task<List<CardDbo>> GetAllAsync()
         {
-            return CardsDictionary.Values.ToList();
+            return await Task.Run(() => CardsDictionary.Values.ToList());
         }
 
-        public CardDbo Update(CardDbo card)
+        public async Task<CardDbo> UpdateAsync(CardDbo card)
         {
-            if (card == null)
+            return await Task.Run(async () =>
             {
-                throw new ArgumentNullException(nameof(card));
-            }
+                if (card == null)
+                {
+                    throw new ArgumentNullException(nameof(card));
+                }
 
-            if (card.Id == Guid.Empty)
-            {
-                throw new ArgumentException("Id is empty");
-            }
+                if (card.Id == Guid.Empty)
+                {
+                    throw new ArgumentException("Id is empty");
+                }
 
-            var existingCard = Get(card.Id);
-            if (existingCard == null)
-            {
-                throw new KeyNotFoundException($"Card is not found by id={card.Id}");
-            }
+                var existingCard = await GetAsync(card.Id);
+                if (existingCard == null)
+                {
+                    throw new KeyNotFoundException($"Card is not found by id={card.Id}");
+                }
 
-            existingCard.Name = card.Name;
-            existingCard.ItemsCount = card.ItemsCount;
+                existingCard.Name = card.Name;
+                existingCard.ItemsCount = card.ItemsCount;
 
-            return existingCard;
+                return existingCard;
+            });
         }
     }
 }
