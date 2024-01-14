@@ -22,39 +22,38 @@ namespace NetCoreWithAngular.Controllers
         }
 
         [HttpGet]
-        [Route("cards")]
-        public IEnumerable<CardVM?> GetAllCards()
+        public async Task<IEnumerable<CardVM?>> GetAllCardsAsync()
         {
-            var cards = _cardsService.GetAll();
+            var cards = await _cardsService.GetAllAsync();
 
             return cards.Select(card => card?.Adapt<CardVM>());
         }
 
         [HttpGet]
         [Route("cards/{id}")]
-        public CardVM? GetCard(Guid id)
+        public async Task<CardVM?> GetCardAsync(Guid id)
         {
-            var card = _cardsService.Get(id);
+            var card = await _cardsService.GetAsync(id);
 
             return card?.Adapt<CardVM>();
         }
 
         [HttpPost]
         [Route("cards")]
-        public CardVM? CreateCard([FromBody] CardDataVM cardData)
+        public async Task<CardVM?> CreateCardAsync([FromBody] CardDataVM cardData)
         {
             var createCardRequest = cardData.Adapt<Card>();
-            var createdCard = _cardsService.Create(createCardRequest);
+            var createdCard = await _cardsService.CreateAsync(createCardRequest);
 
             return createdCard?.Adapt<CardVM>();
         }
 
         [HttpPut]
         [Route("cards")]
-        public CardVM? UpdateCard([FromBody] CardVM cardData)
+        public async Task<CardVM?> UpdateCardAsync([FromBody] CardVM cardData)
         {
             var updateCardRequest = cardData.Adapt<Card>();
-            var updatedCard = _cardsService.Update(updateCardRequest);
+            var updatedCard = await _cardsService.UpdateAsync(updateCardRequest);
 
             return updatedCard?.Adapt<CardVM>();
         }
