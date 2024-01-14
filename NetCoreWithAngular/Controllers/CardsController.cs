@@ -6,6 +6,7 @@ using NetCoreWithAngular.Models;
 
 namespace NetCoreWithAngular.Controllers
 {
+    [Route("cards")]
     [ApiController]    
     public class CardsController : ControllerBase
     {
@@ -29,8 +30,7 @@ namespace NetCoreWithAngular.Controllers
             return cards.Select(card => card?.Adapt<CardVM>());
         }
 
-        [HttpGet]
-        [Route("cards/{id}")]
+        [HttpGet("{id}")]
         public async Task<CardVM?> GetCardAsync(Guid id, CancellationToken ct)
         {
             var card = await _cardsService.GetAsync(id, ct);
@@ -39,7 +39,6 @@ namespace NetCoreWithAngular.Controllers
         }
 
         [HttpPost]
-        [Route("cards")]
         public async Task<CardVM?> CreateCardAsync([FromBody] CardDataVM cardData, CancellationToken ct)
         {
             var createCardRequest = cardData.Adapt<Card>();
@@ -49,7 +48,6 @@ namespace NetCoreWithAngular.Controllers
         }
 
         [HttpPut]
-        [Route("cards")]
         public async Task<CardVM?> UpdateCardAsync([FromBody] CardVM cardData, CancellationToken ct)
         {
             var updateCardRequest = cardData.Adapt<Card>();
