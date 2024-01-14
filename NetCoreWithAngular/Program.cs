@@ -3,6 +3,7 @@ using MapsterMapper;
 using NetCoreWithAngular.DAL.Abstract;
 using NetCoreWithAngular.DAL.Repositories;
 using NetCoreWithAngular.Logic.Abstract;
+using NetCoreWithAngular.Middlewares;
 using NetCoreWithAngular.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -38,5 +39,7 @@ app.MapControllerRoute(
     pattern: "{controller}/{action=Index}/{id?}");
 
 app.MapFallbackToFile("index.html");
+
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.Run();
