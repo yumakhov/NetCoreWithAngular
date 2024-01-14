@@ -480,3 +480,6 @@ $RECYCLE.BIN/
 /.vs/NetCoreWithAngular/v17/.suo
 /NetCoreWithAngular.DAL/bin/Debug/netstandard2.1/NetCoreWithAngular.DAL.dll
 /NetCoreWithAngular.DAL/bin/Debug/netstandard2.1/NetCoreWithAngular.DAL.pdb
+/NetCoreWithAngular/ClientApp/.angular/cache/angular-webpack/c52aba559139d72812b7ad06cc0e761d4052953a/6.pack
+/NetCoreWithAngular/ClientApp/.angular/cache/angular-webpack/c52aba559139d72812b7ad06cc0e761d4052953a/index.pack
+/NetCoreWithAngular/ClientApp/.angular/cache/angular-webpack/c52aba559139d72812b7ad06cc0e761d4052953a/index.pack.old
