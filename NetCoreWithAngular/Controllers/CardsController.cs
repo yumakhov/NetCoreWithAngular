@@ -22,38 +22,38 @@ namespace NetCoreWithAngular.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<CardVM?>> GetAllCardsAsync()
+        public async Task<IEnumerable<CardVM?>> GetAllCardsAsync(CancellationToken ct)
         {
-            var cards = await _cardsService.GetAllAsync();
+            var cards = await _cardsService.GetAllAsync(ct);
 
             return cards.Select(card => card?.Adapt<CardVM>());
         }
 
         [HttpGet]
         [Route("cards/{id}")]
-        public async Task<CardVM?> GetCardAsync(Guid id)
+        public async Task<CardVM?> GetCardAsync(Guid id, CancellationToken ct)
         {
-            var card = await _cardsService.GetAsync(id);
+            var card = await _cardsService.GetAsync(id, ct);
 
             return card?.Adapt<CardVM>();
         }
 
         [HttpPost]
         [Route("cards")]
-        public async Task<CardVM?> CreateCardAsync([FromBody] CardDataVM cardData)
+        public async Task<CardVM?> CreateCardAsync([FromBody] CardDataVM cardData, CancellationToken ct)
         {
             var createCardRequest = cardData.Adapt<Card>();
-            var createdCard = await _cardsService.CreateAsync(createCardRequest);
+            var createdCard = await _cardsService.CreateAsync(createCardRequest, ct);
 
             return createdCard?.Adapt<CardVM>();
         }
 
         [HttpPut]
         [Route("cards")]
-        public async Task<CardVM?> UpdateCardAsync([FromBody] CardVM cardData)
+        public async Task<CardVM?> UpdateCardAsync([FromBody] CardVM cardData, CancellationToken ct)
         {
             var updateCardRequest = cardData.Adapt<Card>();
-            var updatedCard = await _cardsService.UpdateAsync(updateCardRequest);
+            var updatedCard = await _cardsService.UpdateAsync(updateCardRequest, ct);
 
             return updatedCard?.Adapt<CardVM>();
         }

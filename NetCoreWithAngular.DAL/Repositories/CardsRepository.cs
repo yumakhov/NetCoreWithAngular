@@ -4,6 +4,7 @@ using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace NetCoreWithAngular.DAL.Repositories
@@ -37,7 +38,7 @@ namespace NetCoreWithAngular.DAL.Repositories
             };
         }
 
-        public async Task<CardDbo> CreateAsync(CardDbo card)
+        public async Task<CardDbo> CreateAsync(CardDbo card, CancellationToken ct = default)
         {
             return await Task.Run(() =>
                 {
@@ -50,20 +51,20 @@ namespace NetCoreWithAngular.DAL.Repositories
                     CardsDictionary.TryAdd(newCard.Id, newCard);
 
                     return newCard;
-                });            
+                }, ct);            
         }
 
-        public async Task<CardDbo?> GetAsync(Guid id)
+        public async Task<CardDbo?> GetAsync(Guid id, CancellationToken ct = default)
         {
-            return await Task.Run(() => CardsDictionary.TryGetValue(id, out var card) ? card : null);
+            return await Task.Run(() => CardsDictionary.TryGetValue(id, out var card) ? card : null, ct);
         }
 
-        public async Task<List<CardDbo>> GetAllAsync()
+        public async Task<List<CardDbo>> GetAllAsync(CancellationToken ct = default)
         {
-            return await Task.Run(() => CardsDictionary.Values.ToList());
+            return await Task.Run(() => CardsDictionary.Values.ToList(), ct);
         }
 
-        public async Task<CardDbo> UpdateAsync(CardDbo card)
+        public async Task<CardDbo> UpdateAsync(CardDbo card, CancellationToken ct = default)
         {
             return await Task.Run(async () =>
             {
@@ -87,7 +88,7 @@ namespace NetCoreWithAngular.DAL.Repositories
                 existingCard.ItemsCount = card.ItemsCount;
 
                 return existingCard;
-            });
+            }, ct);
         }
     }
 }
