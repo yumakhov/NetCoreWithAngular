@@ -18,6 +18,9 @@ config.Default.NameMatchingStrategy(NameMatchingStrategy.IgnoreCase);
 builder.Services.AddSingleton(config);
 builder.Services.AddScoped<IMapper, ServiceMapper>();
 
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
 // Register application services
 
 builder.Services.AddScoped<ICardsRepository, CardsRepository>();
@@ -25,14 +28,14 @@ builder.Services.AddScoped<ICardsService, CardsService>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment())
 {
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 
 app.UseStaticFiles();
 app.UseRouting();
-
 
 app.MapControllerRoute(
     name: "default",
