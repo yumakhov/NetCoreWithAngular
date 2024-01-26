@@ -46,3 +46,5 @@ app.MapFallbackToFile("index.html");
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.Run();
+
+public partial class Program { }
