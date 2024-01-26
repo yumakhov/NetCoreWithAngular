@@ -90,5 +90,13 @@ namespace NetCoreWithAngular.DAL.Repositories
                 return existingCard;
             }, ct);
         }
+
+        public Task DeleteAsync(Guid id, CancellationToken ct = default)
+        {
+            return Task.Run(() =>
+            {
+                CardsDictionary.TryRemove(id, out _);
+            });
+        }
     }
 }

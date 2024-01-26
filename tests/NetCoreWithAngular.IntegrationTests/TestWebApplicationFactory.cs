@@ -7,12 +7,12 @@ namespace NetCoreWithAngular.IntegrationTests
     {
         protected override void ConfigureWebHost(IWebHostBuilder builder)
         {
-            base.ConfigureWebHost(builder);
+            //base.ConfigureWebHost(builder);
 
-            builder.ConfigureServices(services =>
-            {
-
-            });
+            //builder.ConfigureServices(services =>
+            //{
+                
+            //});
 
             builder.UseEnvironment("Development");
         }

@@ -10,6 +10,7 @@ namespace NetCoreWithAngular.DAL.Abstract
     {
         Task<CardDbo> CreateAsync(CardDbo card, CancellationToken ct = default);
         Task<CardDbo> UpdateAsync(CardDbo card, CancellationToken ct = default);
+        Task DeleteAsync(Guid id, CancellationToken ct = default);
         Task<CardDbo?> GetAsync(Guid id, CancellationToken ct = default);
         Task<List<CardDbo>> GetAllAsync(CancellationToken ct = default);
     }
