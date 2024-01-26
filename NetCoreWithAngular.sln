@@ -5,9 +5,15 @@ VisualStudioVersion = 17.1.32319.34
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCoreWithAngular", "NetCoreWithAngular\NetCoreWithAngular.csproj", "{5A88A0F1-8E31-4EE7-BA94-BB9632DE9AFF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCoreWithAngular.BusinessLogic", "NetCoreWithAngular.Logic\NetCoreWithAngular.BusinessLogic.csproj", "{27C481D5-4C2D-4965-93ED-F5D2AF5BA9E4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCoreWithAngular.BusinessLogic", "NetCoreWithAngular.Logic\NetCoreWithAngular.BusinessLogic.csproj", "{27C481D5-4C2D-4965-93ED-F5D2AF5BA9E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCoreWithAngular.DAL", "NetCoreWithAngular.DAL\NetCoreWithAngular.DAL.csproj", "{D0B686D6-2E9B-490A-9C0C-5CF8CB68670E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCoreWithAngular.DAL", "NetCoreWithAngular.DAL\NetCoreWithAngular.DAL.csproj", "{D0B686D6-2E9B-490A-9C0C-5CF8CB68670E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{46714D79-2306-4CE1-9634-AAAAD66BF31A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E8933C35-7F07-4C5D-B84C-69438DCD9CB9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCoreWithAngular.IntegrationTests", "tests\NetCoreWithAngular.IntegrationTests\NetCoreWithAngular.IntegrationTests.csproj", "{64919372-F28A-4464-812B-A91908F98945}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,9 +33,19 @@ Global
 		{D0B686D6-2E9B-490A-9C0C-5CF8CB68670E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D0B686D6-2E9B-490A-9C0C-5CF8CB68670E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D0B686D6-2E9B-490A-9C0C-5CF8CB68670E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64919372-F28A-4464-812B-A91908F98945}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64919372-F28A-4464-812B-A91908F98945}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64919372-F28A-4464-812B-A91908F98945}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64919372-F28A-4464-812B-A91908F98945}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5A88A0F1-8E31-4EE7-BA94-BB9632DE9AFF} = {E8933C35-7F07-4C5D-B84C-69438DCD9CB9}
+		{27C481D5-4C2D-4965-93ED-F5D2AF5BA9E4} = {E8933C35-7F07-4C5D-B84C-69438DCD9CB9}
+		{D0B686D6-2E9B-490A-9C0C-5CF8CB68670E} = {E8933C35-7F07-4C5D-B84C-69438DCD9CB9}
+		{64919372-F28A-4464-812B-A91908F98945} = {46714D79-2306-4CE1-9634-AAAAD66BF31A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5A6BB981-30BC-4392-BDD9-51DA1B7676CD}
