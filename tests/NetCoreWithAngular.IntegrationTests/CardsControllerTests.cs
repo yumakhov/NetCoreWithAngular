@@ -5,11 +5,11 @@ using System.Net.Http.Json;
 
 namespace NetCoreWithAngular.IntegrationTests
 {
-    public class CardsControllerTests: IClassFixture<WebApplicationFactory<Program>>
+    public class CardsControllerTests: IClassFixture<TestWebApplicationFactory<Program>>
     {
-        private readonly WebApplicationFactory<Program> _factory;
+        private readonly TestWebApplicationFactory<Program> _factory;
 
-        public CardsControllerTests(WebApplicationFactory<Program> factory) 
+        public CardsControllerTests(TestWebApplicationFactory<Program> factory) 
         {
             _factory = factory;
         }
