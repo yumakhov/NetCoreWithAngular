@@ -17,14 +17,14 @@ public class Product
 
 public class PerformanceTests
 {
-    public List<Category> categories { get; set; } = new();
-    public List<Product> products { get; set; } = new();
+    private List<Category> _categories { get; set; } = new();
+    private List<Product> _products { get; set; } = new();
 
     public PerformanceTests()
     {
         for (int i = 0; i < 1000; i++)
         {
-            categories.Add(new Category
+            _categories.Add(new Category
             {
                 Id = Guid.NewGuid(),
                 Name = $"Category_{i}"
@@ -33,10 +33,10 @@ public class PerformanceTests
 
         for (int i = 0; i < 1000; i++)
         {
-            var category = categories[i];
+            var category = _categories[i];
             for (int j = 0; j < 10000; j++)
             {
-                products.Add(new Product
+                _products.Add(new Product
                 {
                     CategoryId = category.Id,
                     Name = $"Product_{i}"
@@ -44,7 +44,7 @@ public class PerformanceTests
 
                 if (j % 79 == 0)
                 {
-                    products.Add(new Product
+                    _products.Add(new Product
                     {
                         CategoryId = category.Id,
                         Name = $"Product_{i}_{i}"
@@ -77,11 +77,11 @@ public class PerformanceTests
         var sw = new Stopwatch();
         sw.Start();
 
-        var dict = products
+        var dict = _products
             .GroupBy(p => p.CategoryId)            
             .ToDictionary(g => g.Key, g => g.ToList());
 
-        Parallel.ForEach(categories, category =>
+        Parallel.ForEach(_categories, category =>
         {
             category.Products = dict.TryGetValue(category.Id, out var products) ? products : Array.Empty<Product>();
         });
