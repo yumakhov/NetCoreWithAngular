@@ -28,7 +28,7 @@ namespace NetCoreWithAngular.DAL.Repositories
             return new ConcurrentDictionary<Guid, CardDbo>(dict);
         }
 
-        private static CardDbo CreateNewCard(string name, int itemsCount)
+        private static CardDbo CreateNewCard(string? name, int itemsCount)
         {
             return new CardDbo
             {

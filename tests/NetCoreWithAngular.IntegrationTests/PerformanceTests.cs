@@ -5,13 +5,13 @@ namespace NetCoreWithAngular.IntegrationTests;
 public class Category
 {
     public Guid Id { get; set; }
-    public string Name { get; set; }
-    public IList<Product> Products { get; set; }
+    public required string Name { get; set; }
+    public IList<Product>? Products { get; set; }
 }
 public class Product
 {
     public Guid CategoryId { get; set; }
-    public string Name { get; set; }
+    public required string Name { get; set; }
 }
 
 
@@ -55,22 +55,6 @@ public class PerformanceTests
 
     }
         
-    //[Fact]
-    //public void Test1()
-    //{
-    //    var sw = new Stopwatch();
-    //    sw.Start();
-
-    //    foreach (var category in categories)
-    //    {
-    //        category.Products = products.Where(p => p.CategoryId == category.Id).ToList();
-    //    }
-
-    //    sw.Stop();
-
-    //    throw new Exception($"Elapsed={sw.Elapsed}");
-    //}
-        
     [Fact]
     public void Test2()
     {
@@ -90,6 +74,4 @@ public class PerformanceTests
 
         throw new Exception($"Elapsed={sw.Elapsed}");
     }
-        
-    
 }

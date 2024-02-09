@@ -63,7 +63,7 @@ namespace NetCoreWithAngular.IntegrationTests
             await cardsRepository.DeleteAsync(createdCard.Id);
         }
 
-        private static async Task<T> DeserializeResponseAsync<T>(HttpResponseMessage response)
+        private static async Task<T?> DeserializeResponseAsync<T>(HttpResponseMessage response)
         {
             response.EnsureSuccessStatusCode();
 
